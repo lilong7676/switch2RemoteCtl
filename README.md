@@ -14,13 +14,14 @@ sequences, and similar tasks.
 > reboot because `enable` rotates the Bluetooth MAC (see below).
 >
 > Test log: [`docs/RESULTS.md`](docs/RESULTS.md) · Plan:
-> [`docs/PLAN.md`](docs/PLAN.md).
+> [`docs/PLAN.md`](docs/PLAN.md) · Mac vision + Socket.IO automation:
+> [`docs/AUTOMATION_PLAN.md`](docs/AUTOMATION_PLAN.md).
 
 ### Repository layout
 
 ```
 switch2RemoteCtl/
-├── docs/               # plan and test log
+├── docs/               # plan, test log, Mac vision automation plan
 ├── scripts/
 │   ├── switchctl.sh    # main entry point (most used)
 │   ├── test_link.py    # connection / input stability test
@@ -284,13 +285,14 @@ Pro Controller，控制 Nintendo Switch 2 做重复性操作自动化（刷闪�
 > 都正常。Pi 重启后仍需要重新配对，因为 `enable` 会更换蓝牙 MAC（见下文）。
 >
 > 实测记录：[`docs/RESULTS.md`](docs/RESULTS.md)；计划：
-> [`docs/PLAN.md`](docs/PLAN.md)。
+> [`docs/PLAN.md`](docs/PLAN.md)；Mac 视觉 + Socket.IO 自动化方案：
+> [`docs/AUTOMATION_PLAN.md`](docs/AUTOMATION_PLAN.md)。
 
 ### 目录结构
 
 ```
 switch2RemoteCtl/
-├── docs/               # 计划与实测记录
+├── docs/               # 计划、实测记录、Mac 视觉自动化方案
 ├── scripts/
 │   ├── switchctl.sh    # 统一调试入口（最常用）
 │   ├── test_link.py    # 连接/输入稳定性测试
