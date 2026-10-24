@@ -1,0 +1,6 @@
+# 示例宏：在主菜单按 B -> 等待 -> 按 A
+# 运行：./scripts/switchctl.sh macro macros/example.txt
+B 0.1s
+0.5s
+A 0.1s
+0.5s

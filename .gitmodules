@@ -1,0 +1,4 @@
+[submodule "nuxbt"]
+	path = nuxbt
+	url = https://github.com/lilong7676/nuxbt.git
+	branch = switch2-local
