@@ -237,7 +237,7 @@ Upstream nuxbt is included as a submodule at `nuxbt/`:
 - fork: https://github.com/lilong7676/nuxbt
 - work branch: `switch2-local`
 - base: `v3.3.7`
-- local commit: `a67ca9e` (`Local Switch 2 compatibility fixes`)
+- local commit: `9d5e08f` (`Local Switch 2 compatibility fixes`)
 - switch 2 PR branch: `switch2-fixes`
 - upstream PR: https://github.com/hannahbee91/nuxbt/pull/78
 - change notes: `nuxbt/LOCAL_CHANGES.md`
@@ -248,6 +248,8 @@ Included changes:
 - controller discoverability no longer times out after 180 seconds
 - webapp does not auto-reconnect when the device is unbonded (Switch 2)
 - webapp Socket.IO uses polling only
+- recover from `ConnectionResetError` when the console sleeps instead of crashing the controller
+- use the console peer address after a fallback connect
 - built `web/static/dist` is force-committed (no Node.js on the Pi)
 
 The venv uses an **editable install** of the submodule:
@@ -494,7 +496,7 @@ Pi 重启
 - fork：https://github.com/lilong7676/nuxbt
 - 工作分支：`switch2-local`
 - 基线：`v3.3.7`
-- 本地 commit：`a67ca9e`（`Local Switch 2 compatibility fixes`）
+- 本地 commit：`9d5e08f`（`Local Switch 2 compatibility fixes`）
 - Switch 2 PR 分支：`switch2-fixes`
 - 上游 PR：https://github.com/hannahbee91/nuxbt/pull/78
 - 修改说明：`nuxbt/LOCAL_CHANGES.md`
@@ -505,6 +507,8 @@ Pi 重启
 - 控制器 discoverable 不再 180 秒超时
 - webapp 对未绑定设备不再自动 reconnect（Switch 2 场景）
 - webapp Socket.IO 只用 polling
+- Switch 休眠导致 `ConnectionResetError` 时进入重连流程，而不是崩溃控制器
+- fallback connect 后记录 Switch 的 peer 地址，避免后续重连指向 Pi 自己
 - 强制提交构建好的 `web/static/dist`（Pi 上没有 Node）
 
 当前 venv **已经通过 editable 安装使用 submodule**：

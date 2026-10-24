@@ -281,6 +281,37 @@ Paired: yes, Bonded: no, Connected: yes
 - `enable` 生成新 MAC `7C:BB:8A:3F:96:40`，重启蓝牙并启动 webapp。
 - 页面验证：`index-Dc9-PrRS.js?v=polling`，JS 中 `transports:["polling"]`。
 
+### 16. Switch 休眠导致控制器崩溃（10:02）
+
+用户反馈：Switch 2 休眠时 webapp 报 `Controller Error`，控制器状态变成 `crashed`：
+
+```
+File "nuxbt/controller/server.py", line 194, in mainloop
+    reply = itr.recv(50)
+ConnectionResetError: [Errno 104] Connection reset by peer
+```
+
+根因：`mainloop()` 对 `recv()` 只捕获 `BlockingIOError`，Switch 休眠拆掉 HID
+中断 socket 时抛出的 `ConnectionResetError` 直接冒泡到 `run()`，被标记为
+`crashed`，控制器进程不再尝试恢复。
+
+修复：
+
+1. `recv()` 增加 `except OSError`，调用已有的 `save_connection()`，让控制器
+   进入重连 / 等待重新配对，而不是崩溃。
+2. `save_connection()` 回退到 `connect()` 后，用 `getpeername()` 记录 Switch
+   地址。原代码用 `getsockname()`，得到的是 Pi 自己的适配器地址，导致下一次
+   重连目标错误。
+
+提交：
+
+- 工作分支 `switch2-local`：`9d5e08f`
+- PR #78 更新：`ac120c2`（`fix(controller): recover from connection reset during recv`
+  + `fix(controller): use peer address after fallback connect`）
+
+待验证：Switch 休眠→唤醒后，webapp 状态应为 `connecting` / `reconnecting` /
+`connected`，不应再出现 `crashed`。
+
 
 
 

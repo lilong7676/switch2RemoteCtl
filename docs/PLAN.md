@@ -193,6 +193,7 @@ switch2RemoteCtl/
 | 2026-10-23 22:10 | P4 | `-a` / `-r` 重连测试 | ❌ 无 link key，重连超时；`-a` 发现 CLI bug |
 | 2026-10-23 22:35 | P3 | patch `--address` bug + 封装 `switchctl.sh` | ✅ 脚本可用，README 已补 |
 | 2026-10-24 08:56 | P2/P4 | 换 MAC + 重启 S2 后重新配对 | ✅ webapp `connected`，S2 正常连接 |
+| 2026-10-24 10:03 | P4 | 修复休眠 `ConnectionResetError` 崩溃 | ✅ PR #78 更新，待复测休眠/唤醒 |
 
 
 
