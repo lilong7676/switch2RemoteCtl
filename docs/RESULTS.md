@@ -309,8 +309,9 @@ ConnectionResetError: [Errno 104] Connection reset by peer
 - PR #78 更新：`ac120c2`（`fix(controller): recover from connection reset during recv`
   + `fix(controller): use peer address after fallback connect`）
 
-待验证：Switch 休眠→唤醒后，webapp 状态应为 `connecting` / `reconnecting` /
-`connected`，不应再出现 `crashed`。
+验证结果（2026-10-24 10:06）：Switch 2 休眠→唤醒后，webapp 不再出现
+`Controller Error` / `crashed`，日志中无 `ConnectionResetError`；控制器进入
+`connecting` / `reconnecting` 并恢复。用户确认修复有效。
 
 
 

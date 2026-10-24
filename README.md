@@ -220,8 +220,9 @@ Pi reboot
 4. **The connection is stable while held:** 120 seconds / 53 inputs without a
    drop in testing. Longer runs are still being evaluated.
 5. The nuxbt override lives in `/run`; re-run `enable` after every Pi reboot.
-6. **Sleep/wake:** after the fixes in this repo, the console reconnects after
-   sleep/wake in testing. If it does not, run `newmac` and `webapp` and pair
+6. **Sleep/wake:** the controller no longer crashes when the console sleeps;
+   it transitions to `connecting`/`reconnecting` and recovers when the console
+   reconnects. If it stays on `connecting`, run `newmac` + `webapp` and pair
    again. Keeping the controller process alive or disabling console auto-sleep
    also helps.
 7. **Stale processes hold the adapter.** After an abnormal exit, run
@@ -480,9 +481,10 @@ Pi 重启
 4. **连接保持期间是稳定的**：实测 120 秒 / 53 次输入无掉线；长时稳定性
    待测。
 5. `nuxbt` 的 override 在 `/run`，重启后必须重新 `enable`。
-6. **休眠/唤醒**：在当前修复下，实测 S2 休眠再唤醒后可以重新连上。如果
-   失败，执行 `newmac` + `webapp` 重新配对；保持控制器进程运行或关闭主机
-   自动休眠也有帮助。
+6. **休眠/唤醒**：S2 休眠时控制器不再崩溃，会进入
+   `connecting`/`reconnecting`，唤醒后自动恢复；如果一直停在 `connecting`，
+   执行 `newmac` + `webapp` 重新配对。保持控制器进程运行或关闭主机自动休眠
+   也有帮助。
 7. **残留进程会占住适配器**：异常退出后先
    `./scripts/switchctl.sh reset`。
 8. **不要在用 webapp 时重启蓝牙**：会让 webapp 的 D-Bus 连接失效，表现为
