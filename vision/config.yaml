@@ -1,0 +1,65 @@
+# M1 read-only perception configuration.
+# All ROIs are normalized [x, y, width, height] in 0..1.
+
+capture:
+  index: 0
+  width: 1920
+  height: 1080
+  fps: 60
+
+rois:
+  title_search: [0.000, 0.000, 0.167, 0.102]
+  prompt_search: [0.750, 0.830, 0.250, 0.170]
+  hud_search: [0.830, 0.000, 0.170, 0.222]
+  datetime: [0.833, 0.000, 0.167, 0.116]
+  stamina_bar: [0.0094, 0.0537, 0.2052, 0.0204]
+  # Switch system UI anchors (HOME screen / menus), not present in-game.
+  home_status_search: [0.865, 0.050, 0.135, 0.090]
+  home_search: [0.015, 0.885, 0.105, 0.100]
+  # WAREHOUSE bottom item panel + right-side page dots (see 2026-10-25 samples).
+  warehouse_item_name: [0.322, 0.694, 0.115, 0.042]
+  warehouse_item_desc: [0.322, 0.740, 0.330, 0.092]
+  warehouse_item_price: [0.650, 0.836, 0.110, 0.062]
+  warehouse_pages: [0.640, 0.185, 0.210, 0.045]
+  # BACKPACK right-side item panel.
+  backpack_item_name: [0.596, 0.214, 0.200, 0.056]
+  backpack_item_price: [0.760, 0.555, 0.170, 0.055]
+  backpack_item_count: [0.760, 0.612, 0.170, 0.055]
+  backpack_item_desc: [0.570, 0.662, 0.385, 0.120]
+  # Measured 2026-10-25: real cell pitch is 106x111 px (not equal division).
+  warehouse_left_grid: [0.07760, 0.24815, 0.44167, 0.41111]
+  warehouse_right_grid: [0.59583, 0.24815, 0.33125, 0.41111]
+  backpack_grid: [0.0625, 0.2315, 0.4661, 0.5000]
+
+grids:
+  warehouse_left: {cols: 8, rows: 4, capacity: 32}
+  warehouse_right: {cols: 6, rows: 4, capacity: 24}
+  backpack: {cols: 8, rows: 4, capacity: 32}
+
+# One-time verified mappings for prompt bars whose button glyphs are icons.
+# Used only for display in M1; no input is dispatched.
+prompt_button_hints:
+  WAREHOUSE:
+    "排序": "-"
+    "整理": "+"
+    "移动": "Y"
+    "拆分": "X"
+    "关闭": "B"
+    "抓住": "A"
+  BACKPACK:
+    "排序": "-"
+    "整理": "+"
+    "物品菜单": "Y"
+    "拆分": "X"
+    "关闭": "B"
+    "抓住": "A"
+
+thresholds:
+  mode: 0.80
+  modal: 0.90
+  home: 0.75
+  prompt: 0.80
+  hud_icon: 0.70
+  weather_margin: 0.10
+  wind_icon: 0.70
+  slot_std: 25.0

@@ -4,3 +4,13 @@ logs/
 __pycache__/
 *.pyc
 .DS_Store
+
+# vision: local secrets and bulky runtime artefacts
+vision/local_config.json
+vision/logs/
+vision/samples/
+vision/data/learning_frames/
+vision/data/*.jsonl
+vision/reference.png
+vision/snapshot_*.png
+vision/__pycache__/
